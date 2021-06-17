@@ -11,4 +11,8 @@ public class MySort {
     public List<Integer> sortCase01(){
         return input ;
     }
+
+    public List<Integer> sortCase02() {
+        return input ;
+    }
 }
