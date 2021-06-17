@@ -8,21 +8,22 @@ public class MySort {
         this.input = input;
     }
 
-    public List<Integer> sortCase01(){
-        return input ;
-    }
-
-    public List<Integer> sortCase02() {
-        return input ;
-    }
-
-    public List<Integer> sortCase03() {
-        int firstNum = input.get(0);
-        int secondNum = input.get(1);
-        if(firstNum > secondNum){
-            input.set(0,secondNum);
-            input.set(1,firstNum);
+    public List<Integer> sort() {
+        int size = input.size() ;
+        if(input.size() < 2 ){
+            return input ;
         }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size-i-1 ; j++) {
+                if(input.get(j) > input.get(j+1)){
+                    int temp = input.get(j);
+                    input.set(j,input.get(j+1));
+                    input.set(j+1,temp);
+                }
+            }
+        }
+
         return input ;
     }
+
 }
