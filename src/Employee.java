@@ -3,8 +3,18 @@ public class Employee {
     private int id;
     private String fname;
     private String lname;
-//    Departmentd dep;
+    private Department dep;
     private String pos;
+
+
+    public Employee() {
+    this("?","?");
+    }
+
+    public Employee(String fname, String lname) {
+        this.fname = fname ;
+        this.lname = lname ;
+    }
 
     //Behaviors or methods
 
@@ -12,8 +22,8 @@ public class Employee {
 
     }
 
-    String getFullName() {
-        return fname + " : "+lname ;
+    public String getFullName() {
+        return fname + " : " + lname;
     }
 
     String getPositionName() {
