@@ -22,4 +22,12 @@ class MySortTest {
         List<Integer> result = mySort.sortCase02();
         assertEquals(Arrays.asList(1,2),result);
     }
+
+    @Test
+    public void testCase3(){
+        List<Integer> input = new ArrayList<Integer>(Arrays.asList(2,1));
+        MySort mySort = new MySort(input);
+        List<Integer> result = mySort.sortCase03();
+        assertEquals(Arrays.asList(1,2),result);
+    }
 }
