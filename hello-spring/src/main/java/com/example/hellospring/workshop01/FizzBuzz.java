@@ -8,16 +8,22 @@ public class FizzBuzz {
     }
 
     public String getResult(){
-        String result = "" ;
-        if(input % 3 == 0){
-            result += "Fizz";
+
+        MyCondition[] conditions = new MyCondition[]{
+            new FizzBuzzCondition(),
+            new FizzCondition(),
+            new BuzzCondition(),
+            new KBTGCondition(),
+        };
+
+        for (MyCondition condition : conditions) {
+            if(condition.check(input)) {
+                return condition.getResult();
+            }
         }
-        if(input % 5 == 0){
-            result += "Buzz";
-        }
-        if(result.isEmpty()){
-            result += input ;
-        }
-        return result ;
+
+        return String.valueOf(input);
+
+
     }
 }
