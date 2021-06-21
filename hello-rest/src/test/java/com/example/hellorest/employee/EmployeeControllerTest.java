@@ -3,6 +3,7 @@ package com.example.hellorest.employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +16,15 @@ public class EmployeeControllerTest {
     @Autowired
     TestRestTemplate restTemplate;
 
+    @MockBean
+    private MyRandom random ;
+
     @Test
     public void callApiWithPathVariable(){
-        EmployeeResponse expected = new EmployeeResponse(123,"Puwadech","Ball") ;
+        EmployeeResponse expected = new EmployeeResponse(123,"Puwadech5","Ball") ;
         EmployeeResponse response = restTemplate.getForObject("/employee/123",EmployeeResponse.class);
         assertEquals(123,response.getId());
-        assertEquals("Puwadech",response.getFname());
+        assertEquals("Puwadech5",response.getFname());
         assertEquals("Ball",response.getLname());
         assertEquals(expected,response);
     }
