@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -43,4 +44,16 @@ public class EmployeeControllerTest {
         assertEquals("Ball",response.getLname());
     }
 
+    @Test
+    public void testCreateEmployee(){
+
+        EmployeeResponse expected = new EmployeeResponse(999,"Puwadech","Ball") ;
+        EmployeeRequest requestObject = new EmployeeRequest("Puwadech", "Ball");
+        HttpEntity<EmployeeRequest> request = new HttpEntity<>(requestObject);
+        EmployeeResponse response = restTemplate.postForObject("/employee", request, EmployeeResponse.class);
+        assertEquals(999 , response.getId());
+        assertEquals("Puwadech" , response.getFname());
+        assertEquals("Ball" , response.getLname());
+        assertEquals(expected , response);
+    }
 }

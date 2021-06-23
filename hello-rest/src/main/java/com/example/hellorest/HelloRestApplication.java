@@ -1,6 +1,7 @@
 package com.example.hellorest;
 
 import com.example.hellorest.employee.Demo;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -28,4 +29,9 @@ public class HelloRestApplication {
 		System.out.println("Demo =>" + demo2.getName());
 	}
 
+//	@Override
+//	public void run(String... args) throws Exception {
+//		System.out.println("Start ...");
+//		System.out.println("Finish ...");
+//	}
 }
