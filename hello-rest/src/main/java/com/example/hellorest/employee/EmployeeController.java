@@ -1,16 +1,18 @@
 package com.example.hellorest.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
 
 @RestController
 public class EmployeeController {
 
     @Autowired
     private MyRandom random ;
+
+    @Autowired
+    private EmployeeRepository repository;
+
 
     @GetMapping("/employee/{id}")
     public EmployeeResponse getEmployeeById(@PathVariable  String id) {
@@ -23,10 +25,10 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             // ERROR => TODO ?
         }
-        // Workshop
 
-        int number = random.nextInt(10);
-        return new EmployeeResponse(_id,"Puwadech"+number,"Ball") ;
+        Employee result = repository.getById(_id);
+        return new EmployeeResponse(result.getId(),result.getFirstName(),result.getLastName()) ;
+
     }
 
     @GetMapping("/employee")
@@ -41,13 +43,19 @@ public class EmployeeController {
             // ERROR => TODO ?
         }
 
-        return new EmployeeResponse(_id,"Puwadech","Ball") ;
+        Employee result = repository.getById(_id);
+        return new EmployeeResponse(result.getId(),result.getFirstName(),result.getLastName()) ;
+
     }
 
     @PostMapping("/employee")
     public EmployeeResponse createNewEmployee(@RequestBody EmployeeRequest request){
-        //Validation
-        return new EmployeeResponse(999, request.getFname(),request.getLname());
+
+        Employee employee =  new Employee(request.getFname(), request.getLname());
+        Employee result =  repository.save(employee);
+
+        return new EmployeeResponse(result.getId(),result.getFirstName(),result.getLastName()) ;
+
     }
 
 }
