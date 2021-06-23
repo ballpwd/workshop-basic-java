@@ -10,17 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmployeeRepositoryTest {
 
     @Autowired
-    EmployeeRepository repository ;
+    private EmployeeRepository repository;
 
     @Test
-    public void foundWithId1(){
-        Employee data = new Employee("Puwadech from DB","Ball from DB");
+    public void foundWithId1() {
+        Employee data = new Employee(1, "Puwadech from DB", "Ball from DB");
         repository.save(data);
 
-        Employee employee1 = repository.getById(1);
-        assertEquals(1,employee1.getId());
-        assertEquals("Puwadech from DB",employee1.getFirstName());
-        assertEquals("Ball from DB",employee1.getLastName());
+        Employee employee1 =  repository.getById(1);
+        assertEquals(1, employee1.getId());
+        assertEquals("Puwadech from DB", employee1.getFirstName());
+        assertEquals("Ball from DB", employee1.getLastName());
     }
+
 
 }
